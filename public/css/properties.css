@@ -1,0 +1,41 @@
+h2
+{ 
+	color: #00F;
+	text-decoration: underline; 
+}
+body
+{ 
+	background-color: #AABBCC;
+	background-image: url("/img/alienbackground.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Oswald', sans-serif 
+}
+
+ul
+{list-style: square}
+
+ol
+{list-style-image: url("/img/panda_roll.gif");}
+
+td
+{
+	font-size: 20px
+	padding: 20px;
+}
+
+tr
+{
+	font-size: 20px
+	padding: 20px;
+}
+
+a:link
+{color: #FFF00F;}
+a:visited
+{color: #F00}
+a:hover
+{font-size: 2em}
+a:active
+{color: #00F}

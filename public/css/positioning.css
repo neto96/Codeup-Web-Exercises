@@ -1,0 +1,65 @@
+h2 {
+	font-weight: bold;
+	margin-bottom: 0; 
+}
+
+div {
+	border: 1px solid black;
+	color: #FFF;
+	padding: 10px;
+	width: 50px;
+	height: 50px;
+	font-weight: bold;
+}
+
+.box{
+	float: left;
+	margin-left: 50px;
+	margin-top: 50px;
+	font-size: 16px;
+}
+
+.arrow{
+	position: relative;
+	top: -100px;
+	left: 45px;
+}
+
+#ribbon{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#b1 {
+	background-color: red;
+
+}
+
+#b2 {
+	background-color: orange;
+
+
+}
+
+#b3 {
+	background-color: yellow;
+
+
+}
+
+#b4 {
+	background-color: green;
+	clear: both;
+
+}
+
+#b5 {
+	background-color: blue;
+	
+}
+
+#b6 {
+	background-color: violet;
+	
+}

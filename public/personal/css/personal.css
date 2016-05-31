@@ -1,0 +1,28 @@
+body {
+	background-image: url(/personal/img/bodybg.jpg);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	font-family: 'Source Code Pro' ;
+	color: #000;
+
+}
+
+
+.navbar-brand{
+	padding: 10px 15px;
+}
+
+.panel {
+	background-color: transparent;
+	border: none;
+}
+
+.panel-default>.panel-heading {
+	background-color: transparent;
+	border: none;
+	color: #000;
+}
+.img-circle{
+	border-radius: 40%;
+	border: solid #000 4px;
+}

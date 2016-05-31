@@ -1,0 +1,32 @@
+body{
+ 	margin: 0px;
+	padding: 0px;
+	font-family: 'Trebuchet MS', verdana;
+}
+
+
+
+#columns{
+	padding: 10px;
+	
+}
+
+.lcolumn{
+	width: 20%;
+	background-color: #999F8E;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+}
+
+.rcolumn{
+	width: 80%;
+	background-color: #D3D8C7;
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	overflow: auto;
+}
+
