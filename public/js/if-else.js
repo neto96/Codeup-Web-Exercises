@@ -8,7 +8,7 @@ var gradeB = 80;
 var gradeC = 95;
 var gradeAverage = (gradeA + gradeB + gradeC) / 3
 
-if (gradeAverage < 80) {
+if (gradeAverage > 80) {
 	console.log("You're awesome")
 } else {
 	console.log("You need to practice more")
