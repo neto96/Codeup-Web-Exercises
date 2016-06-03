@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script>
+	'use strict';
+
+console.log("NUMBERS")
+
+
+
+// var message;
+
+// for (var i = 1;  i <=10; i++)  
+// {
+// 	message = "";
+
+// 	for (var j = 1; j <= i; j++) {
+		
+// 		if (i == 10) {
+// 		message = message + 0;
+// 		} 
+		
+// 		else {
+	
+// 		message = message + i;
+// 		}
+	
+// 	}
+	
+// 	console.log(message);
+// }
+
+var i = 1;
+var j = 1;
+var message = "";
+function concatenate(msg) {
+	i == 10 ? msg = msg + 0 : msg = msg + i;
+}
+for (var i = 1;  i <=10; i++) {
+	for (j = 1; j <= i; j++) {
+		concatenate(message);
+	}
+	console.log(message)
+}
+
+
+
+// console.log("MULTIPLICATIONS")
+
+// for (var firstNum = Math.floor(Math.random() * 10) + 1 , multiplier = 1; multiplier <= 10; multiplier++) {
+// 	console.log(firstNum + "X" + multiplier + "=" + (firstNum*multiplier))
+// }
+
+// console.log("EVEN/ODD")
+
+
+// for (var i = 0; i < 10; i++) {
+// 	var randomNumber = Math.floor(Math.random() * 180) + 20
+// 	var evenOdd = (randomNumber % 2 == 0) ? randomNumber + " is even" : randomNumber + " is odd"; 
+// 		console.log(evenOdd)
+// }
+
+// // }
+
+// console.log("COUNTDOWN")
+
+// for (var countdown = 100; countdown >= 5; countdown-=5) {
+// 	console.log(countdown)
+// }
+
+
+</script>
+
+</body>
+</html>
