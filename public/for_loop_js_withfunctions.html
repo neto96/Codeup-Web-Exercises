@@ -34,17 +34,18 @@ console.log("NUMBERS")
 // 	console.log(message);
 // }
 
-var i = 1;
-var j = 1;
-var message = "";
-function concatenate(msg) {
-	i == 10 ? msg = msg + 0 : msg = msg + i;
-}
-for (var i = 1;  i <=10; i++) {
-	for (j = 1; j <= i; j++) {
-		concatenate(message);
+
+function repeatNumber(number, times) {
+	var log= ""
+	for (var j = 1; j <= times, j++) {
+		log += times % 10;
 	}
-	console.log(message)
+	return log;
+}
+
+for (var i = 1; i <= 10; i++) {
+	var log = repeatNumber(i, i);
+	console.log(log);
 }
 
 

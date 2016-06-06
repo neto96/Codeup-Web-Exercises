@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<script>
+	
+'use strict';
+
+var books = [
+	{
+		'title':'The Shining',
+		'author':{
+			'firstName':'Stephen',
+			'lastName':'King'
+		}
+	},
+	{
+		'title':'Don Quijote de la Mancha',
+		'author':{
+			'firstName':'Diego',
+			'lastName':'de Cervantes Saavedra'
+		}
+	},
+	{
+		'title':'Harry Potter',
+		'author':{
+			'firstName':'J.K.',
+			'lastName':'Rowling'
+		}
+	},
+	{
+		'title':'Moby Dick',
+		'author':{
+			'firstName':'Herman',
+			'lastName':'Melville'
+		}
+	},
+	{
+		'title':'Game of Thrones',
+		'author':{
+			'firstName':'George R.R.',
+			'lastName':'Martin'
+		}
+	}
+]
+
+console.log(books);
+
+
+
+books.forEach(function (book, index) {
+    console.log("Book #" + (index + 1));
+    console.log("Title: " + book['title']);
+    console.log("Author: " + book['author']['firstName'] + ' ' + book['author']['lastName']);
+    console.log("---");
+});
+
+
+</script>
+
+</body>
+</html>
