@@ -81,7 +81,7 @@
 				map.setZoom(restaurant['zoom']);
 				map.setCenter(marker.getPosition());
 			});
-			marker.setAnimation(google.maps.Animation.DROP);
+			marker.setAnimation(google.maps.Animation.BOUNCE);
 			map.addListener('click', function() {
 			infowindow.close();
 			});
@@ -89,6 +89,7 @@
         	map.setZoom(4);
         	infowindow.close();
         	map.setCenter(mapOptions.center);
+        	marker.setAnimation(google.maps.Animation.DROP);
 			};
 			var zReset = document.getElementById('levelDefault').addEventListener('click', zoomReset);
 		})
