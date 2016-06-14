@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Maps JSON</title>
+	<style>
+		#map {
+			height: 500px;
+		}
+	</style>
+</head>
+<body>
+
+<div id="map"></div>
+<button id="level5">Zoom Level 5</button>
+<button id="level15">Zoom Level 15</button>
+<button id="level20">Zoom Level 20</button>
+<button id="levelDefault">Default Zoom Level</button>
+
+<!--Google Maps API key AIzaSyAtYQyRQs9KZuTSR9K3Ik5qTn4Mt3HVAcQ -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtYQyRQs9KZuTSR9K3Ik5qTn4Mt3HVAcQ"></script>
+<script type="text/javascript">
+    (function() {
+        "use strict";
+
+        var mapOptions = {
+            
+            zoom:4,
+
+            center: {
+                lat:  25.666341,
+                lng: -100.306267
+            }
+        };
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+		var restaurants = [
+			{
+				'name':'Ciao Italia',
+				'location':{
+					'lat': 25.666341, 
+					'lng': -100.306267
+				},
+				'icon':'img/ciaoitalia.png',
+				'description':'<p><h1>Ciao Italia</h1></p><p>I love this place because it has actual authentic italian food, thanks to the fact that one of the owners is from Italy and knows how to cook.</p><p>You definitely can\'t go wrong with the pizzas, particularly the Pizza alla Diavola, that has spicy salami, garlic, and crushed pepper.</p><p>Some of my other favorites are: <ul><li>Fettuccine Amatriciana</li><li>Fettuccine Mare e Monti</li><li>Pizza Saporita</li><li>Calamari Fritti</li></ul><p><a target="_blank" href="http://ciaoitaliamty.com"> Ciao Italia\'s Website</a></p>',
+				'zoom':19
+			},
+			{
+				'name':'Black\'s BBQ',
+				'location':{
+					'lat': 30.298590, 
+					'lng': -97.741140
+				},
+				'icon':'img/blacksbbq.png',
+				'description':'<p><h1>Black\'s BBQ</h1></p><p>Best Brisket sandwich I have had in Austin. Mostly because I haven\'t had any other.</p><p>Portions are very generous. Especially if you get double meat.</p><p><a target="_blank" href="http://www.blacksbbq.com/site/austin">Black\'s BBQ Website</a></p>',
+				'zoom':18
+			},
+			{
+				'name':'Cork and Pig Tavern',
+				'location':{
+					'lat': 31.910420,
+					'lng': -102.298000 
+				},
+				'icon':'img/corkandpig.png',
+				'description':'<p><h1>Cork and Pig Tavern</h1></p><p>Since there aren\'t many places to visit in Odessa that you can call decent, this was one of the top options, albeit a bit more expensive.</p><p>The beer selection is small, but decent. They also have some good fried calamari, and the brick-oven baked pizzas are the best entree</p><p><a target="_blank" href="https://www.corkandpig.com/">Cork and Pig Tavern\'s Website</a></p>',
+				'zoom':18
+			}
+
+		]
+
+		restaurants.forEach(function(restaurant){
+			var marker = new google.maps.Marker({
+				position: restaurant['location'],
+				map: map,
+				icon: restaurant['icon']
+			});
+			var infowindow = new google.maps.InfoWindow({
+				content: restaurant['description']
+			});
+			marker.addListener('click', function() {
+				infowindow.open(map, marker);
+				map.setZoom(restaurant['zoom']);
+				map.setCenter(marker.getPosition());
+			});
+			marker.setAnimation(google.maps.Animation.DROP);
+			map.addListener('click', function() {
+			infowindow.close();
+			});
+			function zoomReset () {
+        	map.setZoom(4);
+        	infowindow.close();
+        	map.setCenter(mapOptions.center);
+			};
+			var zReset = document.getElementById('levelDefault').addEventListener('click', zoomReset);
+		})
+
+		function zoom5 () {
+        	map.setZoom(5) ;
+		}
+		var z5 = document.getElementById('level5').addEventListener('click', zoom5);
+
+        function zoom15 () {
+        	map.setZoom(15);
+		}
+		var z15 = document.getElementById('level15').addEventListener('click', zoom15);
+        
+        function zoom20 () {
+        	map.setZoom(20);
+		}
+		var z20 = document.getElementById('level20').addEventListener('click', zoom20);
+
+		
+		
+
+})();
+    </script>
+
+</body>
+</html>
