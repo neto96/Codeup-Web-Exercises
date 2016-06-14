@@ -6,23 +6,19 @@
 <body>
 
 	<div class="content">
-		<h1 id="header">This is the beginning</h1>
-		<p id="para">This is the content of the paragraph. A list follows: </p>
-		<ul class="list">
+		<h1 class="codeup" id="header">This is the beginning</h1>
+		<p  class="codeup" id="para">This is the content of the paragraph. A list follows: </p>
+		<ul class="codeup">
 			<li>This is all the content of this list</li>
 		</ul>
+		<h1 id="codeup">This is the end</h1>
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		
-	var $idContent = $('#header');
-	alert($idContent.html());
+		$('.codeup').css('border', '1px solid red')	
 
-
-		$(document).ready(function() {
-			alert( 'The DOM has finished loading!' );
-		});
 	</script>
 </body>
 </html>
