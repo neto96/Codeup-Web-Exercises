@@ -6,18 +6,25 @@
 <body>
 
 	<div class="content">
-		<h1 class="codeup" id="header">This is the beginning</h1>
+		<h1 class="codeup" id="header">This is the beginning.</h1>
 		<p  class="codeup" id="para">This is the content of the paragraph. A list follows: </p>
 		<ul class="codeup">
-			<li>This is all the content of this list</li>
+			<li>This is the first item.</li>
+			<li>This is the second item.</li>
+			<li>This is the third item.</li>
 		</ul>
-		<h1 id="codeup">This is the end</h1>
+		<h2 id="codeup">This is the end.</h2>
 	</div>
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		
-		$('.codeup').css('border', '1px solid red')	
+		$('li').css('font-size', '20px');
+		$('h1').css('background-color', '#FF0');
+		$('p').css('background-color', '#FF0');
+		$('li').css('background-color', '#FF0');
+		alert($('h1').html());
+
 
 	</script>
 </body>
