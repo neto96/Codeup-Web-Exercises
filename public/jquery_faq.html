@@ -33,6 +33,29 @@
 		<dt>Most visited national park:</dt>
 			<dd class="invisible">Great Smoky Mountains National Park - more than 10 million recreational visits each year.</dd>		
 	</dl>
+	
+	<h3>Big Bend National Park</h3>
+		<ul>
+			<li>Only state park to have an entire mountain range within its borders.</li>
+			<li>Named after the "big bend" in the Rio Grande.</li>
+			<li>At least 450 species of birds inhabit the park.</li>
+			<li>Established in June 12, 1944.</li>
+		</ul>
+	<h3>Yellowstone National Park</h3>
+		<ul>
+			<li>World's oldest national park.</li>
+			<li>Established in 1872.</li>
+			<li>Wyoming, Idaho, and Montana were not states yet when it was established.</li>
+			<li>It was administered by the U.S. Army until 1916, when the NPS was established.</li>
+		</ul>
+	<h3>Hot Springs National Park</h3>
+		<ul>
+			<li>Smallest national park.</li>
+			<li>Calls itself the "oldest area in the national park system".</li>
+			<li>There are over 150 bird species within the park.</li>
+			<li>Established in March 4, 1921.</li>
+
+		</ul>
 	<a href="#" id="toggle">Click here to display/hide facts.
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -40,6 +63,21 @@
 		$('#toggle').click(function (event) {
 			$('dd').toggleClass('invisible');
 		});
+
+		$('ul').each(function(index, element) {
+			$(element).children().first().css('font-weight', 'bold')
+		})
+
+		$('li').click(function (event) {
+			$(this).parent().addClass('invisible');
+		})
+		$('h3').click(function (event) {
+			$('ul').removeClass('invisible');
+		})
+			
+			
+		
+
 	</script>
 
 </body>
