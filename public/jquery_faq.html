@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>National Parks FAQ</title>
+	<style>
+		.invisible {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<h1>National Parks FAQ</h1>
+	
+	<dl>
+		<dt>Total land that is a National Park:</dt>
+			<dd class="invisible">Over 84 million acres!</dd>
+		<dt>First national park:</dt>
+			<dd class="invisible">Yellowstone, created in 1872 by President Ulysses S. Grant.</dd>
+		<dt>First cave named a national park in the world:</dt>
+			<dd class="invisible">Wind Cave. It also happens to be the sixth longest cave in the world.</dd>
+		<dt>Smallest national park:</dt>
+			<dd class="invisible">Hot Springs National Park - 5,500 acres.</dd>
+		<dt>Biggest national park:</dt>
+			<dd class="invisible">Wrangell - St. Elias National Park - 8.3 million acres.</dd>
+		<dt>Only state without a national park:</dt>
+			<dd class="invisible">Delaware. Sorry Delaware!</dd>
+		<dt>Lowest elevation in the US:</dt>
+			<dd class="invisible">Death Valley National Park - 282 feet below sea level.</dd>
+		<dt>Deepest cave in the nation:</dt>
+			<dd class="invisible">Carlsbad Caverns National Park - 1,593 feet deep.</dd>
+		<dt>Second national park:</dt>
+			<dd class="invisible">Mackinac National Park - no longer a national park, but a state park.</dd>
+		<dt>Most visited national park:</dt>
+			<dd class="invisible">Great Smoky Mountains National Park - more than 10 million recreational visits each year.</dd>		
+	</dl>
+	<a href="#" id="toggle">Click here to display/hide facts.
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+		$('#toggle').click(function (event) {
+			$('dd').toggleClass('invisible');
+		});
+	</script>
+
+</body>
+</html>
