@@ -61,7 +61,7 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		$('#toggle').click(function (event) {
-			$('dd').toggleClass('invisible');
+			$('dd').toggle();
 		});
 
 		$('ul').each(function(index, element) {
@@ -69,14 +69,12 @@
 		})
 
 		$('li').click(function (event) {
-			$(this).parent().addClass('invisible');
+			$(this).parent().hide();
 		})
 		$('h3').click(function (event) {
 			$('ul').removeClass('invisible');
 		})
-			
-			
-		
+
 
 	</script>
 
