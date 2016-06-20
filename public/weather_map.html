@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather API</title>
+	<style>
+
+		body {
+			text-align: center;
+		}
+		#day1, #day2, #day3 {
+			display: inline-block;
+			font-size: 13px;
+			width: 300px;
+			height: 250px;
+			border: 1px solid black;
+			outline-style: outset;
+			outline-color: blue;
+			background-color: darkgrey;
+			margin-right: 15px;
+		}
+
+		h4 {
+			margin: 1px;
+		}
+	</style>
+</head>
+<body>
+
+	<h2>Weather Application</h2>
+	<h3 id="cityname">Your city</h3>
+	<div class="weatherbox">
+		<div id="day1">
+			<h3><div id="temp1"></div></h3>
+			<div id="weathericon1"></div>
+			<h4>Clouds:</h4><div id="clouds1"></div>
+			<h4>Humidity:</h4><div id="humidity1"></div>
+			<h4>Wind:</h4><div id="wind1"></div>
+			<h4>Pressure:</h4><div id="pressure1"></div>
+		</div>
+		<div id="day2">
+			<h3><div id="temp2"></div></h3>
+			<div id="weathericon2"></div>
+			<h4>Clouds:</h4><div id="clouds2"></div>
+			<h4>Humidity:</h4><div id="humidity2"></div>
+			<h4>Wind:</h4><div id="wind2"></div>
+			<h4>Pressure:</h4><div id="pressure2"></div>
+		</div>
+		<div id="day3">
+			<h3><div id="temp3"></div></h3>
+			<div id="weathericon3"></div>
+			<h4>Clouds:</h4><div id="clouds3"></div>
+			<h4>Humidity:</h4><div id="humidity3"></div>
+			<h4>Wind:</h4><div id="wind3"></div>
+			<h4>Pressure:</h4><div id="pressure3"></div>
+		</div>
+	</div>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+	
+		$.get("http://api.openweathermap.org/data/2.5/forecast/daily?cnt=3 ", {
+		    APPID: "23e191c58f07bcbe4ff4cdab936bc7f1",
+		    lat: 29.423017,
+		    lon: -98.48527,
+		    units: "imperial"
+		}).done(function(data) {
+			$('.weatherbox').each(function(index, element) {
+				$('#cityname').html(data.city.name);
+				$('#temp1').html(Math.round(data.list[0].temp.min) + "°/" + Math.round(data.list[0].temp.max) + "°");
+				$('#temp2').html(Math.round(data.list[1].temp.min) + "°/" + Math.round(data.list[1].temp.max) + "°");
+				$('#temp3').html(Math.round(data.list[2].temp.min) + "°/" + Math.round(data.list[2].temp.max) + "°");
+				$('#weathericon1').html('<img src="http://openweathermap.org/img/w/'+data.list[0].weather[index].icon+'.png">');
+				$('#weathericon2').html('<img src="http://openweathermap.org/img/w/'+data.list[1].weather[index].icon+'.png">');
+				$('#weathericon3').html('<img src="http://openweathermap.org/img/w/'+data.list[2].weather[index].icon+'.png">');
+				$('#clouds1').html(data.list[0].weather[index].description);
+				$('#clouds2').html(data.list[1].weather[index].description);
+				$('#clouds3').html(data.list[2].weather[index].description);
+				$('#humidity1').html(data.list[0].humidity + "%");
+				$('#humidity2').html(data.list[1].humidity + "%");
+				$('#humidity3').html(data.list[2].humidity + "%");
+				$('#wind1').html(data.list[0].speed + " mph");
+				$('#wind2').html(data.list[1].speed + " mph");
+				$('#wind3').html(data.list[2].speed + " mph");
+				$('#pressure1').html(data.list[0].pressure + " hPa");
+				$('#pressure2').html(data.list[1].pressure + " hPa");
+				$('#pressure3').html(data.list[2].pressure + " hPa");
+				console.log(data)
+			});
+		});
+		
+		
+	</script>
+
+</body>
+</html>
