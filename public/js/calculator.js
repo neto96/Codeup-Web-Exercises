@@ -28,6 +28,8 @@ function clickOperator () {
 	operatorBox.value = this.innerHTML
 	}
 };
+
+
 for (var i = 0; i < operator.length; i++) {
 	operator[i].addEventListener('click', clickOperator);
 };
@@ -89,7 +91,10 @@ var exponent = document.getElementById('exponent');
 function negativeNumber () {
 	if (secondBox.value == "") {
 		firstBox.value = "-"+firstBox.value;
-	} else if (firstBox != "") {
+	} else if (firstBox.value = "-") {
+		firstBox.value = ""+firstBox.value;
+	} 
+	 else if (firstBox != "") {
 		secondBox.value = "-"+secondBox.value;
 	}
 };

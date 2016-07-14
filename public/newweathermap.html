@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather API</title>
+	<style>
+
+		body {
+			text-align: center;
+			color: white;
+			background-image: url(/img/earthbg.jpg);
+			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+		#day {
+			display: inline-block;
+			margin-left: auto;
+			margin-right: auto;
+			font-size: 13px;
+			width: 300px;
+			height: 250px;
+			border: 0.5px solid black;
+			outline-style: outset;
+			outline-color: blue;
+			background-color: black;
+			opacity: 0.9;
+			margin-right: 15px;
+		}
+
+		h4 {
+			margin: 1px;
+		}
+
+		.latlong{
+			margin-top: 10px;
+		}
+
+		#map {
+			text-shadow: none;
+			margin-left: auto;
+			margin-right: auto;
+			height: 400px;
+			margin-top: 5px;
+			width: 500px;
+			width: 949px;
+		}
+
+		.loc {
+			margin-top: 5px;
+		}
+	</style>
+</head>
+<body>
+
+	<h2>Weather Application</h2>
+	<h3 id="cityname"></h3>
+	<div class="weatherbox"></div>
+	<div class="loc">
+ 		<label for="newcity">Location</label>
+ 		<input type="text" name="newcity" id="newcity">
+ 	</div>
+	<div>
+ 		<button id="newlocation">
+ 			Update Location
+ 		</button>
+ 	</div>
+
+	<div id="map"></div>
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtYQyRQs9KZuTSR9K3Ik5qTn4Mt3HVAcQ"></script>
+	<script>
+		(function() {
+			
+			var style = [
+				{
+				    "elementType": "geometry.fill",
+				    "stylers": [
+				      { "hue": "#003bff" },
+				      { "saturation": 88 }
+				    ]
+				}
+			]
+			var mapOptions = {
+				zoom: 8,
+
+				center: {
+					lat:29.423017,
+					lng:-98.48527
+				},
+				styles: style
+			};
+			var map = new google.maps.Map($('#map').get(0), mapOptions);
+
+			var marker = new google.maps.Marker({
+				map: map,
+				draggable: true
+			});
+
+
+			function displayWeather() {
+				$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+				    APPID: "23e191c58f07bcbe4ff4cdab936bc7f1",
+				    q: $('#newcity').val(),
+				    units: "imperial",
+				    cnt: 3
+				}).done(function(data) {
+					$('#cityname').html(data.city.name);
+					data.list.forEach(function(info) {
+						var displayInfo = '';
+						displayInfo += "<div id='day'><p><h3>" + Math.round(info.temp.min) + "°/" + Math.round(info.temp.max) + "°</h3></p><p><img src='http://openweathermap.org/img/w/" + info.weather[0].icon + ".png'></p><p><h4>" +info.weather[0].description + "</h4></p><p><h4>" + info.humidity + "%</h4></p><p><h4>" + info.speed + " mph</h4></p><p><h4>" + info.pressure + " hPa</h4></p></div>";
+						$('.weatherbox').append(displayInfo);
+					});
+				});
+			}
+
+			$('#newlocation').click(function() {
+ 				$('.weatherbox').html('');
+ 				displayWeather();
+ 				var geocoder = new google.maps.Geocoder;
+ 				var geoCity = $('#newcity').val();
+ 				geocoder.geocode({ "address": geoCity}, function(result, status){
+ 					marker.setPosition(result[0].geometry.location);
+ 					map.setCenter(marker.getPosition())		
+ 				});
+ 				map.setZoom(10);
+ 				;
+ 			});
+ 				
+
+			// marker.addListener('mouseup', function() {
+			// 	map.setCenter(marker.getPosition());
+			// });
+
+			map.addListener('click', function(e) {
+				$('.weatherbox').html('');
+				var newPosition = e.latLng;
+				$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+				    APPID: "23e191c58f07bcbe4ff4cdab936bc7f1",
+				    lat: e.latLng.lat(),
+				    lon: e.latLng.lng(),
+				    units: "imperial",
+				    cnt: 3
+				}).done(function(data) {
+					$('#cityname').html(data.city.name);
+					data.list.forEach(function(info) {
+						var displayInfo = '';
+						displayInfo += "<div id='day'><p><h3>" + Math.round(info.temp.min) + "°/" + Math.round(info.temp.max) + "°</h3></p><p><img src='http://openweathermap.org/img/w/" + info.weather[0].icon + ".png'></p><p><h4>" +info.weather[0].description + "</h4></p><p><h4>" + info.humidity + "%</h4></p><p><h4>" + info.speed + " mph</h4></p><p><h4>" + info.pressure + " hPa</h4></p></div>";
+						$('.weatherbox').append(displayInfo);
+					});
+				});
+				marker.setPosition(newPosition);
+				map.setCenter(marker.getPosition());
+				
+			});
+		})();
+	</script>
+
+</body>
+</html>

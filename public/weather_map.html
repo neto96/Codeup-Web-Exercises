@@ -26,6 +26,14 @@
 		.latlong{
 			margin-top: 10px;
 		}
+
+		#map {
+			margin-left: 230px;
+			height: 400px;
+			margin-top: 5px;
+			width: 500px;
+			width: 949px;
+		}
 	</style>
 </head>
 <body>
@@ -58,80 +66,120 @@
 			<h4>Pressure:</h4><div id="pressure3"></div>
 		</div>
 	</div>
-	<div class="latlong">
-		<label for="latitude">Latitude</label>
-		<input type="text" name="latitude" id="latitude">
-		<label for="longitude">Longitude</label>
-		<input type="text" name="longitude" id="longitude">
-	</div>
+	<div class="loc">
+ 		<label for="newcity">Location</label>
+ 		<input type="text" name="newcity" id="newcity">
+ 	</div>
 	<div>
-		<button id="newlocation">
-			Update Location
-		</button>
-	</div>
+ 		<button id="newlocation">
+ 			Update Location
+ 		</button>
+ 	</div>
+
+	<div id="map"></div>
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtYQyRQs9KZuTSR9K3Ik5qTn4Mt3HVAcQ"></script>
 	<script>
-	
-		$.get("http://api.openweathermap.org/data/2.5/forecast/daily?cnt=3 ", {
-		    APPID: "23e191c58f07bcbe4ff4cdab936bc7f1",
-		    lat: 29.423017,
-		    lon: -98.48527,
-		    units: "imperial"
-		}).done(function(data) {
-			$('.weatherbox').each(function(index, element) {
-				$('#cityname').html(data.city.name);
-				$('#temp1').html(Math.round(data.list[0].temp.min) + "°/" + Math.round(data.list[0].temp.max) + "°");
-				$('#temp2').html(Math.round(data.list[1].temp.min) + "°/" + Math.round(data.list[1].temp.max) + "°");
-				$('#temp3').html(Math.round(data.list[2].temp.min) + "°/" + Math.round(data.list[2].temp.max) + "°");
-				$('#weathericon1').html('<img src="http://openweathermap.org/img/w/'+data.list[0].weather[index].icon+'.png">');
-				$('#weathericon2').html('<img src="http://openweathermap.org/img/w/'+data.list[1].weather[index].icon+'.png">');
-				$('#weathericon3').html('<img src="http://openweathermap.org/img/w/'+data.list[2].weather[index].icon+'.png">');
-				$('#clouds1').html(data.list[0].weather[index].description);
-				$('#clouds2').html(data.list[1].weather[index].description);
-				$('#clouds3').html(data.list[2].weather[index].description);
-				$('#humidity1').html(data.list[0].humidity + "%");
-				$('#humidity2').html(data.list[1].humidity + "%");
-				$('#humidity3').html(data.list[2].humidity + "%");
-				$('#wind1').html(data.list[0].speed + " mph");
-				$('#wind2').html(data.list[1].speed + " mph");
-				$('#wind3').html(data.list[2].speed + " mph");
-				$('#pressure1').html(data.list[0].pressure + " hPa");
-				$('#pressure2').html(data.list[1].pressure + " hPa");
-				$('#pressure3').html(data.list[2].pressure + " hPa");
-				console.log(data)
+		(function() {
+			
+			var style = [
+				{
+				    "elementType": "geometry.fill",
+				    "stylers": [
+				      { "hue": "#003bff" },
+				      { "saturation": 88 }
+				    ]
+				}
+			]
+			var mapOptions = {
+				zoom: 5,
+
+				center: {
+					lat:29.423017,
+					lng:-98.48527
+				},
+				styles: style
+			};
+			var map = new google.maps.Map($('#map').get(0), mapOptions);
+
+			var marker = new google.maps.Marker({
+				position: mapOptions.center,
+				map: map,
+				draggable: true
 			});
-		});
-			$('#newlocation').click(function() {
-				$.get("http://api.openweathermap.org/data/2.5/forecast/daily?cnt=3 ", {
+
+			$.get("http://api.openweathermap.org/data/2.5/forecast/daily?cnt=3 ", {
 			    APPID: "23e191c58f07bcbe4ff4cdab936bc7f1",
-			    lat: $("#latitude").val(),
-				lon: $("#longitude").val(),
+			    lat: 29.423017,
+			    lon: -98.48527,
 			    units: "imperial"
-			}).done(function(newdata) {
-			$('.weatherbox').each(function(index, element) {
-				$('#cityname').html(newdata.city.name);
-				$('#temp1').html(Math.round(newdata.list[0].temp.min) + "°/" + Math.round(newdata.list[0].temp.max) + "°");
-				$('#temp2').html(Math.round(newdata.list[1].temp.min) + "°/" + Math.round(newdata.list[1].temp.max) + "°");
-				$('#temp3').html(Math.round(newdata.list[2].temp.min) + "°/" + Math.round(newdata.list[2].temp.max) + "°");
-				$('#weathericon1').html('<img src="http://openweathermap.org/img/w/'+newdata.list[0].weather[index].icon+'.png">');
-				$('#weathericon2').html('<img src="http://openweathermap.org/img/w/'+newdata.list[1].weather[index].icon+'.png">');
-				$('#weathericon3').html('<img src="http://openweathermap.org/img/w/'+newdata.list[2].weather[index].icon+'.png">');
-				$('#clouds1').html(newdata.list[0].weather[index].description);
-				$('#clouds2').html(newdata.list[1].weather[index].description);
-				$('#clouds3').html(newdata.list[2].weather[index].description);
-				$('#humidity1').html(newdata.list[0].humidity + "%");
-				$('#humidity2').html(newdata.list[1].humidity + "%");
-				$('#humidity3').html(newdata.list[2].humidity + "%");
-				$('#wind1').html(newdata.list[0].speed + " mph");
-				$('#wind2').html(newdata.list[1].speed + " mph");
-				$('#wind3').html(newdata.list[2].speed + " mph");
-				$('#pressure1').html(newdata.list[0].pressure + " hPa");
-				$('#pressure2').html(newdata.list[1].pressure + " hPa");
-				$('#pressure3').html(newdata.list[2].pressure + " hPa");
+			}).done(function(data) {
+				$('.weatherbox').each(function(index, element) {
+					$('#cityname').html(data.city.name);
+					$('#temp1').html(Math.round(data.list[0].temp.min) + "°/" + Math.round(data.list[0].temp.max) + "°");
+					$('#temp2').html(Math.round(data.list[1].temp.min) + "°/" + Math.round(data.list[1].temp.max) + "°");
+					$('#temp3').html(Math.round(data.list[2].temp.min) + "°/" + Math.round(data.list[2].temp.max) + "°");
+					$('#weathericon1').html('<img src="http://openweathermap.org/img/w/'+data.list[0].weather[index].icon+'.png">');
+					$('#weathericon2').html('<img src="http://openweathermap.org/img/w/'+data.list[1].weather[index].icon+'.png">');
+					$('#weathericon3').html('<img src="http://openweathermap.org/img/w/'+data.list[2].weather[index].icon+'.png">');
+					$('#clouds1').html(data.list[0].weather[index].description);
+					$('#clouds2').html(data.list[1].weather[index].description);
+					$('#clouds3').html(data.list[2].weather[index].description);
+					$('#humidity1').html(data.list[0].humidity + "%");
+					$('#humidity2').html(data.list[1].humidity + "%");
+					$('#humidity3').html(data.list[2].humidity + "%");
+					$('#wind1').html(data.list[0].speed + " mph");
+					$('#wind2').html(data.list[1].speed + " mph");
+					$('#wind3').html(data.list[2].speed + " mph");
+					$('#pressure1').html(data.list[0].pressure + " hPa");
+					$('#pressure2').html(data.list[1].pressure + " hPa");
+					$('#pressure3').html(data.list[2].pressure + " hPa");
+					console.log(data)
 				});
-			});	
-		});
+			});
+
+			$('#newlocation').click(function() {
+ 				$.get("http://api.openweathermap.org/data/2.5/forecast/daily?cnt=3 ", {
+ 			    APPID: "23e191c58f07bcbe4ff4cdab936bc7f1",
+ 			    q: $('#newcity').val(),
+ 			    units: "imperial"
+ 			}).done(function(newdata) {
+		 			$('.weatherbox').each(function(index, element) {
+		 				$('#cityname').html(newdata.city.name);
+		 				$('#temp1').html(Math.round(newdata.list[0].temp.min) + "°/" + Math.round(newdata.list[0].temp.max) + "°");
+		 				$('#temp2').html(Math.round(newdata.list[1].temp.min) + "°/" + Math.round(newdata.list[1].temp.max) + "°");
+		 				$('#temp3').html(Math.round(newdata.list[2].temp.min) + "°/" + Math.round(newdata.list[2].temp.max) + "°");
+		 				$('#weathericon1').html('<img src="http://openweathermap.org/img/w/'+newdata.list[0].weather[index].icon+'.png">');
+		 				$('#weathericon2').html('<img src="http://openweathermap.org/img/w/'+newdata.list[1].weather[index].icon+'.png">');
+		 				$('#weathericon3').html('<img src="http://openweathermap.org/img/w/'+newdata.list[2].weather[index].icon+'.png">');
+		 				$('#clouds1').html(newdata.list[0].weather[index].description);
+		 				$('#clouds2').html(newdata.list[1].weather[index].description);
+		 				$('#clouds3').html(newdata.list[2].weather[index].description);
+		 				$('#humidity1').html(newdata.list[0].humidity + "%");
+		 				$('#humidity2').html(newdata.list[1].humidity + "%");
+		 				$('#humidity3').html(newdata.list[2].humidity + "%");
+		 				$('#wind1').html(newdata.list[0].speed + " mph");
+		 				$('#wind2').html(newdata.list[1].speed + " mph");
+		 				$('#wind3').html(newdata.list[2].speed + " mph");
+		 				$('#pressure1').html(newdata.list[0].pressure + " hPa");
+		 				$('#pressure2').html(newdata.list[1].pressure + " hPa");
+		 				$('#pressure3').html(newdata.list[2].pressure + " hPa");
+		 				console.log(newdata);
+		 			});
+ 				});
+ 			});	
+
+			marker.addListener('mouseup', function() {
+				map.setCenter(marker.getPosition());
+			});
+			map.addListener('click', function(e) {
+				var newPosition = e.latLng;
+				marker.setPosition(newPosition);
+				map.setCenter(marker.getPosition());
+				
+			});
+		})();
 	</script>
 
 </body>

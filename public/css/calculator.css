@@ -1,3 +1,8 @@
+body {
+	background-image: url(/img/hypmatrix.gif);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
 .jumbotron {
 	text-align: center;
 }
@@ -12,10 +17,12 @@ p#answer{
 }
 
 .calculator {
-	position: fixed;
+	position: relative;
 	text-align: center;
 	width: 250px;
-	margin-left: 410px;
+	margin-left: auto;
+	margin-right: auto;
+	opacity: .90;
 }
 
 .keys{
@@ -32,9 +39,11 @@ input {
 }
 #operatorBox {
 	width: 39px;
+
 	text-align: center;
 }
 #answer {
+	margin-top: 1px;
 	width: 253px;
 	text-align: center;
 }
