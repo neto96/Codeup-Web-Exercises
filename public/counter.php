@@ -5,7 +5,7 @@
 function pageController() {
     $data = [];
     if (isset($_GET['count'])) {
-        $data['$currentValue'] = $_GET['count'];
+        $data['currentValue'] = $_GET['count'];
     } else{
         $data['currentValue'] = 0;
     }
