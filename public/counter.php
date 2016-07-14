@@ -4,11 +4,7 @@
 
 function pageController() {
     $data = [];
-    if (isset($_GET['count'])) {
-        $data['currentValue'] = $_GET['count'];
-    } else{
-        $data['currentValue'] = 0;
-    }
+    $data['currentValue'] = (isset($_GET['count'])) ? $_GET['count'] : 0;
     return $data;
 }
 
