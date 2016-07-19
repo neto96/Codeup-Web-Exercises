@@ -1,3 +1,10 @@
+<?php
+session_start();
+
+if ($_SESSION['logged_in_user'] == false)
+    header('Location: login.php');
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -17,6 +24,9 @@
         <h1 class="col-md-8 col-md-offset-4">AUTHORIZED</h1>
     </div>
 </div>
+<form method="POST" action="http://codeup.dev/logout.php">
+    <button type="submit" name="logout" value="logout">Logout</button>
+</form>
 <img src="img/woohoo.gif" class="col-md-6 col-md-offset-3">
 </body>
 </html>

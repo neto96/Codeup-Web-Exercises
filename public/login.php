@@ -1,8 +1,11 @@
 <?php
-$username = isset($_POST['username']) ? $_POST['username'] : '';
-$password = isset($_POST['password']) ? $_POST['password'] : '';
+session_start();
+require_once 'functions.php';
+$username = inputHas('username') ? htmlspecialchars(strip_tags(inputGet('username'))) : '';
+$password = inputHas('password') ? htmlspecialchars(strip_tags(inputGet('password'))) : '';
 
 if (($username == 'guest') && ($password == 'password')) {
+    $_SESSION['logged_in_user'] = session_id();
     header('Location: authorized.php');
     exit;
 } elseif (($username !== 'guest' && $username !== '') || ($password !== 'password' && $password !== '')) {
@@ -10,6 +13,10 @@ if (($username == 'guest') && ($password == 'password')) {
     $image = "/img/doh.gif";
 }
 
+if (isset($_SESSION['logged_in_user'])) {
+    header('Location: authorized.php');
+    exit;
+}
 ?>
 <!doctype html>
 <html>
@@ -34,7 +41,7 @@ if (($username == 'guest') && ($password == 'password')) {
         <div class="panel-body">
             <?php if (isset($message)) : ?>
             <div class="alert alert-danger" role="alert">
-                <h1><?= $message; ?></h1>
+                <h1><?= escape($message); ?></h1>
             </div>
             <?php endif; ?>
             <form method="POST" role="form">
@@ -49,7 +56,7 @@ if (($username == 'guest') && ($password == 'password')) {
                 </fieldset>
             </form>
             <?php if (isset($image)) : ?>
-            <img src="<?= $image; ?>" class="col-md-6 col-md-offset-3">
+            <img src="<?= escape($image); ?>" class="col-md-6 col-md-offset-3">
             <?php endif; ?>
         </div>
     </div>
