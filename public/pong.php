@@ -1,9 +1,9 @@
 <?php
-require_once 'functions.php';
+require_once '../Input.php';
 
 function pageController() {
     $data = [];
-    $data['currentValue'] = (inputHas('count')) ? inputGet('count') : 0;
+    $data['currentValue'] = (Input::has('count')) ? Input::get('count') : 0;
     return $data;
 }
 
@@ -17,8 +17,8 @@ extract(pageController());
     <title>PONG</title>
 </head>
 <body>
-<h1>Score: <?= escape($currentValue); ?></h1>
-<p><a href="/ping.php?count=<?= escape($currentValue) + 1; ?>">HIT</a></p>
+<h1>Score: <?= $currentValue; ?></h1>
+<p><a href="/ping.php?count=<?= $currentValue + 1; ?>">HIT</a></p>
 <p><a href="/ping.php?count=0">MISS</a></p>
 </body>
 </html>
