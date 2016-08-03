@@ -8,8 +8,19 @@ function pageController()
     DEFINE('DB_USER', 'parks_user');
     DEFINE('DB_PASS', 'parks');
     require '../db_connect.php';
-    $parks = $dbc->query('SELECT name, location, date_established, area_in_acres FROM national_parks')->fetchAll(PDO::FETCH_ASSOC);
-//var_dump($parks);
+
+
+    $query = "SELECT name, location, date_established, area_in_acres FROM national_parks LIMIT 4";
+    if (Input::has('page')) {
+        if (Input::get('page') <= 1) {
+            $query .= " OFFSET 0";
+        } else {
+            $query .= " OFFSET " . (Input::get('page') - 1) * 4;
+        }
+    }
+
+    $parks = $dbc->query("$query")->fetchAll(PDO::FETCH_ASSOC);
+
     return [
         'parks' => $parks
     ];
