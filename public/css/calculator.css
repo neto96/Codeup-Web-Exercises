@@ -17,16 +17,17 @@ p#answer{
 }
 
 .calculator {
-	position: relative;
 	text-align: center;
-	width: 250px;
 	margin-left: auto;
 	margin-right: auto;
 	opacity: .90;
 }
+.btn {
+	background-color: #1E2429;
+}
 
-.keys{
-width: 250px;
+#inputboxes{
+width: 100%;
 }
 
 input {
@@ -34,16 +35,18 @@ input {
 }
 
 #firstBox,#secondBox {
-	width: 101px;
+	width: 40%;
 	text-align: center;
 }
 #operatorBox {
-	width: 39px;
-
+	width: 18%;
 	text-align: center;
 }
 #answer {
 	margin-top: 1px;
-	width: 253px;
+
 	text-align: center;
+}
+.jumbotron {
+	background-color: rgba(238, 238, 238, 0.5);
 }
